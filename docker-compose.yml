@@ -1,0 +1,16 @@
+version: '2'
+services:
+
+  nginx_ffmpeg:
+    build:
+      context: '.'
+      dockerfile: './dockerfile'
+    ports:
+      - '127.0.0.1:8000:8000'
+      - '127.0.0.1:1935:1935'
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - .:/app
+    working_dir: /app
+    command: ["tail", "-f", "/dev/null"]
+    restart: unless-stopped

@@ -1,0 +1,49 @@
+<html>
+    <body>
+        <img class="video1" src="/output/img/aaa001.png" data-src="/output/img/aaa{num}.png" />
+        <img class="video2" src="/output/img/aaa001.png" data-png="/output/img/aaa001.png" data-webp="/output/img/aaa.webp" />
+        <script>
+
+            // video1
+            var videos1 = document.getElementsByClassName("video1")
+            for (var i = 0; i < videos1.length; i++) {
+                var v = videos1[i]
+                v.addEventListener('mouseout', (e) => {
+                    console.log("v1 out")
+                    var tmp = e.target.attributes['data-src'].value
+                    var src = tmp.replace('{num}', '001')
+                    if (e.target.attributes.src.value === src) return
+                    e.target.attributes.src.value = src
+                })
+                v.addEventListener('mousemove', (e) => {
+                    console.log("v1 move")
+                    var interval = e.target.clientWidth / 4
+                    var num = Math.round(e.x / interval) + 1
+                    var tmp = e.target.attributes['data-src'].value
+                    var src = tmp.replace('{num}', num.toString().padStart(3, '0'))
+                    if (e.target.attributes.src.value === src) return
+                    e.target.attributes.src.value = src
+                })
+            }
+
+            //video2
+            var videos2 = document.getElementsByClassName("video2")
+            for (var i = 0; i < videos2.length; i++) {
+                var v = videos2[i]
+                v.addEventListener('mouseout', (e) => {
+                    console.log("v2 out")
+                    var src = e.target.attributes['data-png'].value
+                    if (e.target.attributes.src.value === src) return
+                    e.target.attributes.src.value = src
+                })
+                v.addEventListener('mousemove', (e) => {
+                    console.log("v2 move")
+                    var src = e.target.attributes['data-webp'].value
+                    if (e.target.attributes.src.value === src) return
+                    e.target.attributes.src.value = src
+                })
+            }
+
+        </script>
+    </body>
+</html>

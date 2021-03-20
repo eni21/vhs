@@ -1,0 +1,30 @@
+<body>
+    <style>
+        body {
+            background-color: #0f0;
+            padding: 20px;
+            overflow: hidden;
+        }
+        .time {
+            display: inline-block;
+            background-color: #000;
+            color: #fff;
+            border-radius: 5px;
+            padding: 3px 5px;
+        }
+    </style>
+    <div class="time" id="time"></div>
+    <script>
+        function updateTime() {
+            var time = document.getElementById('time')
+            var now = new Date()
+            var hh = now.getHours().toString().padStart(2, 0)
+            var mm = now.getMinutes().toString().padStart(2, 0)
+            var ss = now.getSeconds().toString().padStart(2, 0)
+            var fff = now.getMilliseconds().toString().padStart(3, 0)
+            time.innerHTML = `${hh}:${mm}:${ss}.${fff}`
+        }
+        updateTime()
+        setInterval(updateTime, 1000);
+    </script>
+</body>
